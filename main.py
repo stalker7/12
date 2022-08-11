@@ -25,18 +25,21 @@ def get_shop_list_by_dishes(dishes, person_list):
     for dish in dishes:
         if dish in book:
             for ingridients in book[dish]:
+                ing = int(ingridients['quantity'])
+                name = ingridients['ingredient_name']
+
                 if ingridients['ingredient_name'] in resurs:
-                    resurs[ingridients['ingredient_name']]['quantity'] = ingridients['quantity'] * person_list
+                    resurs[name]['quantity'] = ing * person_list
                 else:
-                    resurs[ingridients['ingredient_name']] = {'measure': ingridients['measure'],
-                                                'quantity' : ingridients['quantity'] * person_list}
+                    resurs[name] = {'measure': ingridients['measure'],
+                                                'quantity' : ing * person_list }
 
 
     return resurs
 
 
 
-recipe = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 1)
+recipe = get_shop_list_by_dishes(['Фахитос', 'Омлет'], 2)
 pprint(recipe)
 
 
